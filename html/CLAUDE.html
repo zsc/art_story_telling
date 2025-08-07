@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Untitled</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/highlight.css">
+    <script src="./assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <ul class="nav-list"><li class=""><a href="./index.html">讲好故事的艺术：从神话到科技论文</a></li><li class=""><a href="./chapter1.html">第1章：故事的原子结构——最小叙事单元与组合模式</a></li><li class=""><a href="./chapter2.html">第2章：英雄之旅的函数式编程——坎贝尔单一神话的模块化</a></li><li class=""><a href="./chapter3.html">第3章：五幕结构的标准协议——从古希腊到好莱坞的接口设计</a></li><li class=""><a href="./chapter4.html">第4章：三幕与起承转合——东西方叙事框架的同构映射</a></li><li class=""><a href="./chapter5.html">第5章：冲突引擎的设计模式——内外冲突的分类与升级机制</a></li><li class=""><a href="./chapter6.html">第6章：案例解析：《星际穿越》的叙事架构逆向工程</a></li><li class=""><a href="./chapter7.html">第7章：角色的类与实例——原型理论与个性化参数</a></li><li class=""><a href="./chapter8.html">第8章：人物弧的状态机——从静态到动态的角色成长系统</a></li><li class=""><a href="./chapter9.html">第9章：世界观的分层架构——设定、规则与内在逻辑的一致性</a></li><li class=""><a href="./chapter10.html">第10章：魔法系统的API设计——硬魔法与软魔法的接口定义</a></li><li class=""><a href="./chapter11.html">第11章：时空框架的坐标系——线性、循环与平行叙事的实现</a></li><li class=""><a href="./chapter12.html">第12章：案例解析：《哈利·波特》的世界观工程</a></li><li class=""><a href="./chapter13.html">第13章：案例解析：《红楼梦》的多层世界观架构</a></li><li class=""><a href="./chapter14.html">第14章：悬念的队列管理——问题的提出、延迟与解答</a></li><li class=""><a href="./chapter15.html">第15章：伏笔的异步编程——回调、承诺与最终兑现</a></li><li class=""><a href="./chapter16.html">第16章：节奏的时钟周期——张弛、快慢与情绪曲线</a></li><li class=""><a href="./chapter17.html">第17章：信息密度的带宽控制——展示vs叙述的动态平衡</a></li><li class=""><a href="./chapter18.html">第18章：视角的多线程处理——全知、限制与不可靠叙述者</a></li><li class=""><a href="./chapter19.html">第19章：案例解析：《罗生门》的信息控制艺术</a></li><li class=""><a href="./chapter20.html">第20章：故事审美的不变量与变量——人类叙事偏好的历史演化</a></li><li class=""><a href="./chapter21.html">第21章：神话模式的递归结构——从洪水神话到创世神话的模板</a></li><li class=""><a href="./chapter22.html">第22章：悲剧的异常处理——亚里士多德的净化机制</a></li><li class=""><a href="./chapter23.html">第23章：喜剧的bug利用——误会、巧合与荒诞的逻辑</a></li><li class=""><a href="./chapter24.html">第24章：侦探小说的回溯算法——线索、推理与真相还原</a></li><li class=""><a href="./chapter25.html">第25章：成长故事的升级系统——从零到英雄的经验值累积</a></li><li class=""><a href="./chapter26.html">第26章：案例解析：《哈姆雷特》的悲剧算法</a></li><li class=""><a href="./chapter27.html">第27章：案例解析：《西游记》的升级系统与团队副本设计</a></li><li class=""><a href="./chapter28.html">第28章：文字的想象空间——描写的分辨率与留白的艺术</a></li><li class=""><a href="./chapter29.html">第29章：影视的镜头语言——蒙太奇、场面调度与视听节奏</a></li><li class=""><a href="./chapter30.html">第30章：游戏的交互叙事——玩家代理与emergent narrative</a></li><li class=""><a href="./chapter31.html">第31章：漫画的时空压缩——分格、留白与阅读节奏控制</a></li><li class=""><a href="./chapter32.html">第32章：音频的盲盒体验——播客、有声书与纯听觉叙事</a></li><li class=""><a href="./chapter33.html">第33章：案例解析：《原神》的开放世界叙事</a></li><li class=""><a href="./chapter34.html">第34章：连载的版本迭代——网文的敏捷开发与用户反馈循环</a></li><li class=""><a href="./chapter35.html">第35章：短视频的极限压缩——钩子、爆点与15秒完整弧</a></li><li class=""><a href="./chapter36.html">第36章：直播的实时渲染——即兴叙事与弹幕交互</a></li><li class=""><a href="./chapter37.html">第37章：社交媒体的分布式叙事——碎片化内容的聚合与重组</a></li><li class=""><a href="./chapter38.html">第38章：算法推荐下的叙事优化——留存率、完播率与情绪曲线</a></li><li class=""><a href="./chapter39.html">第39章：案例解析：《射雕英雄传》的连载叙事艺术</a></li><li class=""><a href="./chapter40.html">第40章：科技论文的叙事重构——问题、方法、发现的戏剧化</a></li><li class=""><a href="./chapter41.html">第41章：数据可视化的故事设计——让图表说话的技巧</a></li><li class=""><a href="./chapter42.html">第42章：故事与人工智能：新的可能性</a></li><li class=""><a href="./chapter43.html">第43章：技术演讲的舞台表演——TED式叙事与学术报告的平衡</a></li><li class=""><a href="./chapter44.html">第44章：案例研究的纪录片手法——真实故事的戏剧化处理</a></li><li class=""><a href="./chapter45.html">第45章：案例解析：AlphaGo论文的叙事策略</a></li><li class=""><a href="./chapter46.html">第46章：元叙事的递归调用——故事中的故事与自指结构</a></li><li class=""><a href="./chapter47.html">第47章：非线性叙事的图算法——多线索、多结局与时间循环</a></li><li class=""><a href="./chapter48.html">第48章：跨媒介叙事的适配器模式——IP的多平台展开</a></li><li class=""><a href="./chapter49.html">第49章：AI辅助创作的协处理器——提示工程与人机协作</a></li><li class=""><a href="./chapter50.html">第50章：元宇宙叙事的新维度——沉浸、互动与生成式故事</a></li><li class=""><a href="./chapter51.html">第51章：案例解析：《底特律：变人》的交互叙事实验</a></li><li class=""><a href="./chapter52.html">第52章：叙事模式库——50个可复用的故事模板</a></li><li class=""><a href="./chapter53.html">第53章：检查清单大全——各类型作品的审查要点</a></li><li class=""><a href="./chapter54.html">第54章：常见bug与调试——叙事问题的诊断与修复</a></li><li class=""><a href="./chapter55.html">第55章：跨文化移植指南——故事的本地化与全球化</a></li><li class=""><a href="./chapter56.html">第56章：叙事度量与评估——故事质量的量化分析</a></li><li class=""><a href="./chapter57.html">第57章：诊断实践：《三体》第三部的叙事问题修复</a></li><li class="active"><a href="./CLAUDE.html">Untitled</a></li></ul>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <p>（交流可以用英文，所有文档中文，保留这句）</p>
+<h2 id="_1">项目目标</h2>
+<p>编写一份怎样讲好故事的中文教程markdown，要包含大量的习题和参考答案（答案默认折叠）。同时有原理性分析性的思维，也要有实用的桥段和具体例子拆解。
+先从古代神话、文学类讲起，再逐渐延伸到现代的游戏、电影等新艺术。要有模态间打通，如把画作也当成故事讲解。一个重头是把讲好故事应用于科技论文的写作。
+文件组织是 index.md + chapter1.md + ...
+可以用代码相关概念讲解，但不写代码。</p>
+<h2 id="audience">Audience</h2>
+<p>verteran programmer and AI scientists</p>
+<h2 id="_2">章节结构要求</h2>
+<p>每个章节应包含：</p>
+<ol>
+<li><strong>开篇段落</strong>：简要介绍本章内容和学习目标</li>
+<li><strong>本章小结</strong>：总结关键概念和公式</li>
+<li><strong>练习题</strong>：
+   - 每章包含6-8道练习题
+   - 50%基础题（帮助熟悉材料）
+   - 50%挑战题（包括开放性思考题）
+   - 每题提供提示（Hint）
+   - 答案默认折叠，不包含代码</li>
+<li><strong>常见陷阱与错误</strong> (Gotchas)：每章包含该主题的常见错误和调试技巧</li>
+<li><strong>最佳实践检查清单</strong>：每章末尾提供设计审查要点</li>
+</ol>
+            </article>
+            
+            <nav class="page-nav"><a href="./chapter57.html" class="nav-link prev">← 第57章：诊断实践：《三体》第三部的叙事问题修复</a></nav>
+        </main>
+    </div>
+</body>
+</html>

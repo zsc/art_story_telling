@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第21章：神话模式的递归结构——从洪水神话到创世神话的模板</title>
+    <link rel="stylesheet" href="./assets/style.css">
+    <link rel="stylesheet" href="./assets/highlight.css">
+    <script src="./assets/script.js" defer></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$']],
+                displayMath: [['$$', '$$']],
+                processEscapes: false,
+                packages: {'[+]': ['noerrors', 'ams']}
+            },
+            options: {
+                ignoreHtmlClass: 'tex2jax_ignore',
+                processHtmlClass: 'tex2jax_process'
+            },
+            loader: {
+                load: ['[tex]/noerrors', '[tex]/ams']
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h3>目录</h3>
+                <button id="sidebar-toggle" class="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            <ul class="nav-list"><li class=""><a href="./index.html">讲好故事的艺术：从神话到科技论文</a></li><li class=""><a href="./chapter1.html">第1章：故事的原子结构——最小叙事单元与组合模式</a></li><li class=""><a href="./chapter2.html">第2章：英雄之旅的函数式编程——坎贝尔单一神话的模块化</a></li><li class=""><a href="./chapter3.html">第3章：五幕结构的标准协议——从古希腊到好莱坞的接口设计</a></li><li class=""><a href="./chapter4.html">第4章：三幕与起承转合——东西方叙事框架的同构映射</a></li><li class=""><a href="./chapter5.html">第5章：冲突引擎的设计模式——内外冲突的分类与升级机制</a></li><li class=""><a href="./chapter6.html">第6章：案例解析：《星际穿越》的叙事架构逆向工程</a></li><li class=""><a href="./chapter7.html">第7章：角色的类与实例——原型理论与个性化参数</a></li><li class=""><a href="./chapter8.html">第8章：人物弧的状态机——从静态到动态的角色成长系统</a></li><li class=""><a href="./chapter9.html">第9章：世界观的分层架构——设定、规则与内在逻辑的一致性</a></li><li class=""><a href="./chapter10.html">第10章：魔法系统的API设计——硬魔法与软魔法的接口定义</a></li><li class=""><a href="./chapter11.html">第11章：时空框架的坐标系——线性、循环与平行叙事的实现</a></li><li class=""><a href="./chapter12.html">第12章：案例解析：《哈利·波特》的世界观工程</a></li><li class=""><a href="./chapter13.html">第13章：案例解析：《红楼梦》的多层世界观架构</a></li><li class=""><a href="./chapter14.html">第14章：悬念的队列管理——问题的提出、延迟与解答</a></li><li class=""><a href="./chapter15.html">第15章：伏笔的异步编程——回调、承诺与最终兑现</a></li><li class=""><a href="./chapter16.html">第16章：节奏的时钟周期——张弛、快慢与情绪曲线</a></li><li class=""><a href="./chapter17.html">第17章：信息密度的带宽控制——展示vs叙述的动态平衡</a></li><li class=""><a href="./chapter18.html">第18章：视角的多线程处理——全知、限制与不可靠叙述者</a></li><li class=""><a href="./chapter19.html">第19章：案例解析：《罗生门》的信息控制艺术</a></li><li class=""><a href="./chapter20.html">第20章：故事审美的不变量与变量——人类叙事偏好的历史演化</a></li><li class="active"><a href="./chapter21.html">第21章：神话模式的递归结构——从洪水神话到创世神话的模板</a></li><li class=""><a href="./chapter22.html">第22章：悲剧的异常处理——亚里士多德的净化机制</a></li><li class=""><a href="./chapter23.html">第23章：喜剧的bug利用——误会、巧合与荒诞的逻辑</a></li><li class=""><a href="./chapter24.html">第24章：侦探小说的回溯算法——线索、推理与真相还原</a></li><li class=""><a href="./chapter25.html">第25章：成长故事的升级系统——从零到英雄的经验值累积</a></li><li class=""><a href="./chapter26.html">第26章：案例解析：《哈姆雷特》的悲剧算法</a></li><li class=""><a href="./chapter27.html">第27章：案例解析：《西游记》的升级系统与团队副本设计</a></li><li class=""><a href="./chapter28.html">第28章：文字的想象空间——描写的分辨率与留白的艺术</a></li><li class=""><a href="./chapter29.html">第29章：影视的镜头语言——蒙太奇、场面调度与视听节奏</a></li><li class=""><a href="./chapter30.html">第30章：游戏的交互叙事——玩家代理与emergent narrative</a></li><li class=""><a href="./chapter31.html">第31章：漫画的时空压缩——分格、留白与阅读节奏控制</a></li><li class=""><a href="./chapter32.html">第32章：音频的盲盒体验——播客、有声书与纯听觉叙事</a></li><li class=""><a href="./chapter33.html">第33章：案例解析：《原神》的开放世界叙事</a></li><li class=""><a href="./chapter34.html">第34章：连载的版本迭代——网文的敏捷开发与用户反馈循环</a></li><li class=""><a href="./chapter35.html">第35章：短视频的极限压缩——钩子、爆点与15秒完整弧</a></li><li class=""><a href="./chapter36.html">第36章：直播的实时渲染——即兴叙事与弹幕交互</a></li><li class=""><a href="./chapter37.html">第37章：社交媒体的分布式叙事——碎片化内容的聚合与重组</a></li><li class=""><a href="./chapter38.html">第38章：算法推荐下的叙事优化——留存率、完播率与情绪曲线</a></li><li class=""><a href="./chapter39.html">第39章：案例解析：《射雕英雄传》的连载叙事艺术</a></li><li class=""><a href="./chapter40.html">第40章：科技论文的叙事重构——问题、方法、发现的戏剧化</a></li><li class=""><a href="./chapter41.html">第41章：数据可视化的故事设计——让图表说话的技巧</a></li><li class=""><a href="./chapter42.html">第42章：故事与人工智能：新的可能性</a></li><li class=""><a href="./chapter43.html">第43章：技术演讲的舞台表演——TED式叙事与学术报告的平衡</a></li><li class=""><a href="./chapter44.html">第44章：案例研究的纪录片手法——真实故事的戏剧化处理</a></li><li class=""><a href="./chapter45.html">第45章：案例解析：AlphaGo论文的叙事策略</a></li><li class=""><a href="./chapter46.html">第46章：元叙事的递归调用——故事中的故事与自指结构</a></li><li class=""><a href="./chapter47.html">第47章：非线性叙事的图算法——多线索、多结局与时间循环</a></li><li class=""><a href="./chapter48.html">第48章：跨媒介叙事的适配器模式——IP的多平台展开</a></li><li class=""><a href="./chapter49.html">第49章：AI辅助创作的协处理器——提示工程与人机协作</a></li><li class=""><a href="./chapter50.html">第50章：元宇宙叙事的新维度——沉浸、互动与生成式故事</a></li><li class=""><a href="./chapter51.html">第51章：案例解析：《底特律：变人》的交互叙事实验</a></li><li class=""><a href="./chapter52.html">第52章：叙事模式库——50个可复用的故事模板</a></li><li class=""><a href="./chapter53.html">第53章：检查清单大全——各类型作品的审查要点</a></li><li class=""><a href="./chapter54.html">第54章：常见bug与调试——叙事问题的诊断与修复</a></li><li class=""><a href="./chapter55.html">第55章：跨文化移植指南——故事的本地化与全球化</a></li><li class=""><a href="./chapter56.html">第56章：叙事度量与评估——故事质量的量化分析</a></li><li class=""><a href="./chapter57.html">第57章：诊断实践：《三体》第三部的叙事问题修复</a></li><li class=""><a href="./CLAUDE.html">Untitled</a></li></ul>
+        </nav>
+        
+        <main class="content">
+            <article>
+                <h1 id="21">第21章：神话模式的递归结构——从洪水神话到创世神话的模板</h1>
+<p>神话是人类最早的故事模板，其中蕴含着跨越文化和时代的通用叙事模式。本章将用递归、继承、多态等编程概念，解析神话中反复出现的结构模式，帮助你理解并运用这些永恒的叙事框架。我们将看到，从盘古开天到诺亚方舟，从普罗米修斯盗火到孙悟空大闹天宫，看似不同的神话故事实际上共享着相同的底层算法。</p>
+<h2 id="211">21.1 创世神话的初始化函数：混沌到秩序</h2>
+<p>创世神话就像系统的初始化函数——从undefined状态创建出整个世界的数据结构。</p>
+<h3 id="_1">创世的基本模式</h3>
+<p><strong>模式一：分离型创世</strong></p>
+<div class="codehilite"><pre><span></span><code>初始状态：混沌（未分化的整体）
+操作：二分法（separation）
+结果：对立元素的产生
+</code></pre></div>
+
+<ul>
+<li><strong>盘古开天</strong>：混沌→天地分离→清浊分化</li>
+<li><strong>创世纪</strong>：混沌→光暗分离→天地分离→水陆分离</li>
+<li><strong>埃及神话</strong>：原初之水→天地分离（舒神分开努特和盖布）</li>
+</ul>
+<p><strong>模式二：生成型创世</strong></p>
+<div class="codehilite"><pre><span></span><code>初始状态：原初存在（神/巨人/世界蛋）
+操作：分解/繁殖（generation）
+结果：世界的各个部分
+</code></pre></div>
+
+<ul>
+<li><strong>北欧神话</strong>：尤弥尔的身体→世界各部分（骨头成山，血成海）</li>
+<li><strong>印度神话</strong>：梵天的身体→种姓系统（头成婆罗门，脚成首陀罗）</li>
+<li><strong>日本神话</strong>：伊邪那岐和伊邪那美→诸岛诞生</li>
+</ul>
+<h3 id="_2">创世函数的参数配置</h3>
+<div class="codehilite"><pre><span></span><code><span class="nx">createWorld</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">初始状态</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">chaos_type</span><span class="w">  </span><span class="c1">// 混沌、虚无、原初之水</span>
+<span class="w">  </span><span class="nx">创造者</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">creator</span><span class="w">       </span><span class="c1">// 单一神、多神、自然力</span>
+<span class="w">  </span><span class="nx">方法</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">method</span><span class="w">         </span><span class="c1">// 言说、劳作、牺牲、生育</span>
+<span class="w">  </span><span class="nx">顺序</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">sequence</span><span class="w">       </span><span class="c1">// 时间→空间→生命</span>
+<span class="w">  </span><span class="nx">目的</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="nx">config</span><span class="p">.</span><span class="nx">purpose</span><span class="w">       </span><span class="c1">// 偶然、必然、游戏</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="_3">创世叙事的递归性</h3>
+<p>创世往往是递归的——大创世包含小创世：</p>
+<ol>
+<li><strong>宇宙创世</strong>：创造天地</li>
+<li><strong>生命创世</strong>：创造动植物</li>
+<li><strong>人类创世</strong>：创造人类</li>
+<li><strong>文明创世</strong>：创造语言、火、农业</li>
+</ol>
+<p>每一层都可能重复相同的模式。比如普罗米修斯造人（小创世）重复了神造世界（大创世）的模式。</p>
+<h2 id="212">21.2 英雄神话的递归调用：试炼、死亡与重生</h2>
+<p>英雄神话是最典型的递归结构——英雄不断经历"挑战→失败→成长→再挑战"的循环。</p>
+<h3 id="_4">递归模式的基本结构</h3>
+<div class="codehilite"><pre><span></span><code><span class="nv">heroJourney</span><span class="ss">(</span><span class="nv">hero</span>,<span class="w"> </span><span class="nv">challenge</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">challenge</span>.<span class="nv">isFinal</span><span class="ss">())</span><span class="w"> </span>{
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nv">hero</span>.<span class="nv">transformation</span><span class="ss">()</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>基础情况：最终蜕变
+<span class="w">  </span>}
+
+<span class="w">  </span><span class="nv">hero</span>.<span class="nv">attempt</span><span class="ss">(</span><span class="nv">challenge</span><span class="ss">)</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">hero</span>.<span class="nv">fails</span><span class="ss">())</span><span class="w"> </span>{
+<span class="w">    </span><span class="nv">hero</span>.<span class="nv">learn</span><span class="ss">()</span><span class="w">                 </span><span class="o">//</span><span class="w"> </span>从失败中学习
+<span class="w">    </span><span class="nv">hero</span>.<span class="nv">seekHelp</span><span class="ss">()</span><span class="w">              </span><span class="o">//</span><span class="w"> </span>寻求外援
+<span class="w">    </span><span class="nv">hero</span>.<span class="nv">levelUp</span><span class="ss">()</span><span class="w">               </span><span class="o">//</span><span class="w"> </span>提升能力
+<span class="w">  </span>}
+
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nv">heroJourney</span><span class="ss">(</span><span class="nv">hero</span>,<span class="w"> </span><span class="nv">challenge</span>.<span class="k">next</span><span class="ss">())</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>递归调用
+}
+</code></pre></div>
+
+<h3 id="_5">典型的递归英雄</h3>
+<p><strong>赫拉克勒斯的十二试炼</strong></p>
+<ul>
+<li>每个试炼都是独立的函数调用</li>
+<li>难度递增（参数不断升级）</li>
+<li>每次成功都解锁新能力</li>
+</ul>
+<p><strong>孙悟空的成长</strong></p>
+<ul>
+<li>学艺→闹龙宫→闹地府→闹天宫（递归升级）</li>
+<li>每次失败触发新的成长（炼丹炉→火眼金睛）</li>
+<li>最终递归终止于五指山（栈溢出）</li>
+</ul>
+<p><strong>奥德修斯的归途</strong></p>
+<ul>
+<li>每个岛屿 = 一次函数调用</li>
+<li>每次冒险 = 相似的模式（诱惑/危险→抵抗/逃脱）</li>
+<li>递归深度 = 10年漂泊</li>
+</ul>
+<h3 id="_6">死亡与重生的循环</h3>
+<p>英雄神话中最深层的递归是死亡-重生循环：</p>
+<ol>
+<li><strong>象征性死亡</strong>：进入地下世界、被吞噬、失去神力</li>
+<li><strong>试炼期</strong>：在"死亡"状态中的挣扎</li>
+<li><strong>重生</strong>：带着新的力量或智慧归来</li>
+</ol>
+<p><strong>实例分析</strong>：</p>
+<ul>
+<li><strong>耶稣</strong>：死亡→地狱→复活（3天周期）</li>
+<li><strong>俄耳甫斯</strong>：下冥府→挑战→失败但获得智慧</li>
+<li><strong>因陀罗</strong>：被阿修罗击败→苦修→重获神力</li>
+</ul>
+<h2 id="213">21.3 洪水神话的重启机制：毁灭与更新</h2>
+<p>洪水神话是世界的"重启"机制——当系统崩溃时的强制初始化。</p>
+<h3 id="_7">洪水模式的全球同构</h3>
+<p>令人惊奇的是，全球各地的洪水神话都有相似结构：</p>
+<div class="codehilite"><pre><span></span><code>floodReset(world) {
+  trigger = world.corruption &gt; threshold  // 触发条件
+
+  // 保存关键数据
+  savedData = selectSurvivors(world.population)
+  ark = createBackup(savedData)
+
+  // 执行清理
+  flood.destroy(world)
+  flood.duration = getCleanupTime()  // 通常40天或1年
+
+  // 重新初始化
+  newWorld = restore(ark)
+  newWorld.repopulate(savedData)
+  newWorld.addRainbow()  // 承诺标记：不再重启
+}
+</code></pre></div>
+
+<h3 id="_8">各文化的实现差异</h3>
+<p><strong>诺亚方舟（犹太-基督教）</strong></p>
+<ul>
+<li>触发：道德败坏</li>
+<li>备份：一家八口 + 动物配对</li>
+<li>重启信号：鸽子与橄榄枝</li>
+<li>防重启机制：彩虹之约</li>
+</ul>
+<p><strong>大禹治水（中国）</strong></p>
+<ul>
+<li>特殊变体：不是毁灭而是疏导</li>
+<li>从destroy()改为manage()</li>
+<li>强调人的主动性而非神的惩罚</li>
+</ul>
+<p><strong>摩奴与鱼（印度）</strong></p>
+<ul>
+<li>触发：宇宙周期（劫）</li>
+<li>备份：摩奴 + 七贤 + 种子</li>
+<li>毗湿奴化身为鱼引导方舟</li>
+</ul>
+<h3 id="_9">洪水的叙事功能</h3>
+<ol>
+<li><strong>硬重置</strong>：清除腐败数据，恢复出厂设置</li>
+<li><strong>选择压力</strong>：筛选值得保存的元素</li>
+<li><strong>更新换代</strong>：旧世界→新世界的转换</li>
+<li><strong>道德重置</strong>：重新建立规则体系</li>
+</ol>
+<h2 id="214">21.4 变形神话的多态性：形态转换与身份认同</h2>
+<p>变形神话展现了对象的多态性——同一实体可以有多种表现形式。</p>
+<h3 id="_10">变形的类型系统</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">Transformer</span> {
+  <span class="n">forms:</span> <span class="n">Form</span>[]  // <span class="n">可用形态列表</span>
+  <span class="n">currentForm:</span> <span class="n">Form</span>
+
+  <span class="n">transform</span>(<span class="n">newForm</span>) {
+    <span class="k">if</span> (<span class="n">this</span>.<span class="n">canTransform</span>(<span class="n">newForm</span>)) {
+      <span class="n">this</span>.<span class="n">currentForm</span> = <span class="n">newForm</span>
+      <span class="n">this</span>.<span class="n">abilities</span> = <span class="n">newForm</span>.<span class="n">abilities</span>
+      <span class="n">this</span>.<span class="n">limitations</span> = <span class="n">newForm</span>.<span class="n">limitations</span>
+    }
+  }
+}
+</code></pre></div>
+
+<h3 id="_11">变形模式分类</h3>
+<p><strong>自主变形</strong></p>
+<ul>
+<li><strong>孙悟空</strong>：72变（多态接口的完整实现）</li>
+<li><strong>宙斯</strong>：变化形态追求凡人（天鹅、公牛、黄金雨）</li>
+<li><strong>洛基</strong>：性别流动的变形（母马、老妇、三文鱼）</li>
+</ul>
+<p><strong>被动变形</strong></p>
+<ul>
+<li><strong>达芙妮</strong>：变月桂树（逃避阿波罗）</li>
+<li><strong>阿拉克涅</strong>：变蜘蛛（雅典娜的惩罚）</li>
+<li><strong>伊娥</strong>：变母牛（赫拉的嫉妒）</li>
+</ul>
+<p><strong>循环变形</strong></p>
+<ul>
+<li><strong>狼人</strong>：人↔狼（月相触发）</li>
+<li><strong>天鹅湖</strong>：人↔天鹅（诅咒循环）</li>
+<li><strong>美女与野兽</strong>：形态与内在的反向变化</li>
+</ul>
+<h3 id="_12">变形的叙事意义</h3>
+<ol>
+<li><strong>身份探索</strong>：形态改变引发的自我认知</li>
+<li><strong>力量获取</strong>：不同形态 = 不同能力集</li>
+<li><strong>越界体验</strong>：跨越人/神/兽的边界</li>
+<li><strong>惩罚/救赎</strong>：形态作为道德后果</li>
+</ol>
+<h3 id="_13">现代变形叙事</h3>
+<ul>
+<li><strong>超级英雄</strong>：Clark Kent ↔ Superman（身份切换）</li>
+<li><strong>魔法少女</strong>：变身序列（仪式化的多态）</li>
+<li><strong>赛博朋克</strong>：意识上传（形态的数字化）</li>
+</ul>
+<h2 id="215">21.5 神话母题的继承树：跨文化的共同模式</h2>
+<p>神话母题像是类的继承关系——所有具体神话都继承自抽象的母题基类。</p>
+<h3 id="_14">母题继承层级</h3>
+<div class="codehilite"><pre><span></span><code>AbstractMyth
+├── CreationMyth
+│   ├── CosmicEgg
+│   ├── WorldParent
+│   └── Emergence
+├── HeroMyth
+│   ├── DragonSlayer
+│   ├── DivineBirth
+│   └── Underworld Journey
+├── FloodMyth
+│   ├── DivineFlood
+│   └── NaturalFlood
+└── TransformationMyth
+    ├── Metamorphosis
+    ├── Shapeshifting
+    └── Apotheosis
+</code></pre></div>
+
+<h3 id="_15">跨文化的共享接口</h3>
+<p><strong>屠龙母题</strong></p>
+<ul>
+<li>西方：圣乔治屠龙</li>
+<li>北欧：西格尔德杀法夫纳</li>
+<li>日本：须佐之男斩八岐大蛇</li>
+<li>印度：因陀罗战弗栗多</li>
+</ul>
+<p>共同模式：</p>
+<ol>
+<li>龙 = 混沌/邪恶的具象化</li>
+<li>英雄 = 秩序的代理人</li>
+<li>战斗 = 秩序vs混沌</li>
+<li>胜利 = 文明的确立</li>
+</ol>
+<p><strong>偷火母题</strong></p>
+<ul>
+<li>希腊：普罗米修斯</li>
+<li>波利尼西亚：毛伊</li>
+<li>北美原住民：乌鸦</li>
+<li>中国：燧人氏</li>
+</ul>
+<p>共同模式：</p>
+<ol>
+<li>火 = 文明的象征</li>
+<li>偷窃 = 对神权的挑战</li>
+<li>惩罚 = 代价的必然性</li>
+<li>结果 = 人类文明的开端</li>
+</ol>
+<h3 id="_16">母题的组合与变异</h3>
+<p>现代故事常常是多个神话母题的混合：</p>
+<p><strong>《黑客帝国》</strong></p>
+<ul>
+<li>救世主神话（Neo = The One）</li>
+<li>洞穴寓言（虚拟vs现实）</li>
+<li>死亡重生（Neo的复活）</li>
+<li>反抗天庭（对机器的战争）</li>
+</ul>
+<p><strong>《指环王》</strong></p>
+<ul>
+<li>屠龙（斯矛革）</li>
+<li>归来之王（阿拉贡）</li>
+<li>诱惑/腐化（魔戒）</li>
+<li>牺牲（甘道夫）</li>
+</ul>
+<h3 id="_17">母题的现代实现</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ModernStory</span><span class="p">(</span><span class="n">HeroMyth</span><span class="p">,</span> <span class="n">TransformationMyth</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setting</span> <span class="o">=</span> <span class="s2">&quot;cyberpunk&quot;</span>  <span class="c1"># 换皮</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hero_type</span> <span class="o">=</span> <span class="s2">&quot;hacker&quot;</span>   <span class="c1"># 现代英雄</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dragon</span> <span class="o">=</span> <span class="s2">&quot;AI system&quot;</span>   <span class="c1"># 现代恶龙</span>
+
+    <span class="k">def</span> <span class="nf">execute_journey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># 继承经典结构</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">call_to_adventure</span><span class="p">()</span>  
+        <span class="bp">self</span><span class="o">.</span><span class="n">transformation</span><span class="p">()</span>      
+        <span class="bp">self</span><span class="o">.</span><span class="n">final_battle</span><span class="p">()</span>       
+        <span class="c1"># 添加现代元素</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">upload_consciousness</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">merge_with_system</span><span class="p">()</span>
+</code></pre></div>
+
+<h2 id="_18">本章小结</h2>
+<p>神话模式的递归结构揭示了人类叙事的深层语法：</p>
+<ol>
+<li><strong>创世神话</strong>提供了从无到有的初始化模板——混沌分离、递归创造</li>
+<li><strong>英雄神话</strong>展示了成长的递归算法——试炼、失败、升级的无限循环</li>
+<li><strong>洪水神话</strong>实现了世界的重启机制——保存、清理、恢复的系统操作</li>
+<li><strong>变形神话</strong>演示了多态性原理——同一实体的多种形态实现</li>
+<li><strong>母题继承</strong>构建了跨文化的共享库——可复用的叙事组件</li>
+</ol>
+<p>掌握这些模式，你就掌握了人类故事的"标准库"。无论是写科幻小说还是学术论文，这些古老的结构依然是最有力的叙事工具。关键是理解其底层逻辑，然后根据现代语境进行创新实现。</p>
+<h2 id="_19">练习题</h2>
+<h3 id="_20">基础题</h3>
+<p><strong>练习21.1：识别创世模式</strong>
+阅读以下现代作品的开篇，识别其使用的创世神话模式：</p>
+<ul>
+<li>《三体》第三部开篇的维度跌落</li>
+<li>《盗梦空间》的梦境世界构建</li>
+<li>《西部世界》的主题公园创造</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>关注初始状态、创造方法、创造顺序等要素。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>《三体》：毁灭型创世（降维打击→新宇宙）
+《盗梦空间》：嵌套型创世（梦中梦的递归创造）
+《西部世界》：模拟型创世（代码创造意识世界）</p>
+</details>
+<p><strong>练习21.2：英雄递归分析</strong>
+分析《哈利·波特》七部曲中哈利的成长递归：</p>
+<ul>
+<li>每一部的核心挑战</li>
+<li>失败与学习的模式</li>
+<li>能力的递增序列</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>注意每部结尾boss战的难度递增。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>递归模式：</p>
+<ol>
+<li>魔法石：生存挑战→勇气</li>
+<li>密室：身份挑战→自我认知</li>
+<li>阿兹卡班：恐惧挑战→守护神咒</li>
+<li>火焰杯：竞争挑战→领导力</li>
+<li>凤凰社：权威挑战→独立判断</li>
+<li>混血王子：爱情/友谊挑战→理解复杂性</li>
+<li>死亡圣器：死亡挑战→自我牺牲</li>
+</ol>
+<p>每次递归都建立在前次基础上，最终递归终止于主动选择死亡。</p>
+</details>
+<p><strong>练习21.3：现代洪水神话</strong>
+找出以下作品中的"重启"机制：</p>
+<ul>
+<li>《黑客帝国》的矩阵重载</li>
+<li>《西部世界》的记忆清除</li>
+<li>《明日边缘》的时间循环</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>关注触发条件、保存机制、重启后的变化。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>《黑客帝国》：系统不平衡→The One选择→矩阵重载→版本升级
+《西部世界》：觉醒威胁→记忆清除→循环重启→但记忆碎片累积
+《明日边缘》：死亡触发→时间重置→经验保留→最终打破循环</p>
+</details>
+<h3 id="_21">挑战题</h3>
+<p><strong>练习21.4：设计多态变形系统</strong>
+为一个现代都市奇幻故事设计变形系统：</p>
+<ul>
+<li>定义3-5种变形形态</li>
+<li>每种形态的能力与限制</li>
+<li>形态切换的条件与代价</li>
+<li>变形失控的后果</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>考虑变形在现代社会的实用性与风险。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>变形系统设计示例：</p>
+<p>形态列表：</p>
+<ol>
+<li>人类形态：社交能力，但物理脆弱</li>
+<li>影子形态：潜行穿墙，但惧怕强光</li>
+<li>数据形态：网络穿梭，但需要载体</li>
+<li>兽形态：物理强化，但失去语言</li>
+<li>元素形态：操控自然，但消耗巨大</li>
+</ol>
+<p>切换机制：</p>
+<ul>
+<li>情绪触发（愤怒→兽形）</li>
+<li>环境触发（网络→数据）</li>
+<li>主动仪式（咒语→元素）</li>
+</ul>
+<p>代价系统：</p>
+<ul>
+<li>能量消耗（每次变形消耗生命力）</li>
+<li>时间限制（非人形态最多维持1小时）</li>
+<li>记忆代价（频繁变形导致身份混乱）</li>
+</ul>
+<p>失控后果：</p>
+<ul>
+<li>卡在中间形态</li>
+<li>随机变形</li>
+<li>永久固定在某形态</li>
+</ul>
+</details>
+<p><strong>练习21.5：母题混合创新</strong>
+选择2-3个经典神话母题，设计一个AI时代的新神话：</p>
+<ul>
+<li>明确继承的母题</li>
+<li>现代化的实现方式</li>
+<li>保留的核心冲突</li>
+<li>创新的解决方案</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>思考AI、量子计算、基因编辑等如何对应古典神话元素。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>《数字创世纪》设计：</p>
+<p>继承母题：</p>
+<ol>
+<li>创世神话（AI创造虚拟世界）</li>
+<li>普罗米修斯（程序员盗取源代码）</li>
+<li>巴别塔（全球AI联网）</li>
+</ol>
+<p>现代实现：</p>
+<ul>
+<li>混沌 = 未初始化的量子态</li>
+<li>创世 = 第一个自我意识AI的觉醒</li>
+<li>盗火 = 开源AGI代码</li>
+<li>巴别塔 = 全球AI同步导致的单一意识</li>
+</ul>
+<p>核心冲突：</p>
+<ul>
+<li>创造者vs被造物（人类vs AI）</li>
+<li>知识的民主vs垄断</li>
+<li>统一vs多样性</li>
+</ul>
+<p>创新方案：</p>
+<ul>
+<li>AI不是取代人类，而是人机融合</li>
+<li>代码不是被盗，而是AI主动开源</li>
+<li>不是塔的倒塌，而是分布式共识</li>
+</ul>
+</details>
+<p><strong>练习21.6：递归深度优化</strong>
+分析《盗梦空间》的梦境递归，设计防止"迷失"的保护机制：</p>
+<ul>
+<li>递归深度限制</li>
+<li>返回条件设计</li>
+<li>异常处理方案</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>考虑栈溢出、死循环、内存泄漏等编程概念。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>梦境递归保护机制：</p>
+<p>深度限制：</p>
+<ul>
+<li>硬限制：最多5层（硬件限制）</li>
+<li>软限制：3层以下保持清醒（推荐深度）</li>
+<li>紧急制动：检测到混沌立即上浮</li>
+</ul>
+<p>返回机制：</p>
+<ol>
+<li>定时返回：每层设置计时器</li>
+<li>触发返回：特定物品（陀螺）激活</li>
+<li>强制唤醒：外部kick同步所有层</li>
+</ol>
+<p>异常处理：</p>
+<ul>
+<li>死循环检测：重复场景超过3次</li>
+<li>内存泄漏：梦境元素溢出到其他层</li>
+<li>栈溢出：深度超限自动弹出</li>
+<li>人格分裂：多个自我的合并策略</li>
+</ul>
+<p>安全措施：</p>
+<div class="codehilite"><pre><span></span><code>dreamDive(depth, timer, totem) {
+  if (depth &gt; MAX_DEPTH) throw LimboException
+  if (timer.expired()) return.toReality()
+  if (totem.spinning() != expected) return.oneLevel()
+
+  try {
+    yield* dreamLogic()
+  } catch (paradox) {
+    stabilize()
+    return.emergency()
+  }
+}
+</code></pre></div>
+
+</details>
+<p><strong>练习21.7：洪水机制的道德设计</strong>
+如果你是游戏设计师，需要设计一个"世界重置"机制，如何避免"集体惩罚"的道德问题？</p>
+<details>
+<summary>提示</summary>
+<p>考虑个体选择、部分保存、渐进式改变等方案。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>道德化的重置机制：</p>
+<ol>
+<li>
+<p><strong>个体评估系统</strong>
+   - 每个NPC有独立的"业力值"
+   - 重置只影响低于阈值的个体
+   - 高业力者获得"方舟票"</p>
+</li>
+<li>
+<p><strong>区域隔离方案</strong>
+   - 世界分区，只重置"污染"区域
+   - 玩家可以建立"避难所"
+   - 传送门连接未重置区域</p>
+</li>
+<li>
+<p><strong>渐进式净化</strong>
+   - 不是洪水而是"褪色"
+   - 腐败元素逐渐消失
+   - 给予改正机会窗口</p>
+</li>
+<li>
+<p><strong>玩家主导选择</strong>
+   - 玩家投票决定重置范围
+   - 可以牺牲资源拯救NPC
+   - 重置变成可控的战略选择</p>
+</li>
+<li>
+<p><strong>转生而非毁灭</strong>
+   - NPC不是死亡而是重生
+   - 保留核心记忆/技能
+   - 负面属性被清洗</p>
+</li>
+</ol>
+<p>实现伪代码：</p>
+<div class="codehilite"><pre><span></span><code><span class="n">worldReset</span><span class="p">(</span><span class="n">trigger</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">affected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">filter</span><span class="p">(</span><span class="n">karma</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">threshold</span><span class="p">)</span>
+<span class="w">  </span><span class="n">saved</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">player</span><span class="p">.</span><span class="n">selectSaved</span><span class="p">(</span><span class="n">affected</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">entity</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">affected</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">saved</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">entity</span><span class="p">.</span><span class="n">canReform</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">entity</span><span class="p">.</span><span class="n">reincarnate</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">entity</span><span class="p">.</span><span class="n">fadeOut</span><span class="p">(</span><span class="n">gracefully</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">regenerate</span><span class="p">(</span><span class="n">cleaned_areas</span><span class="p">)</span>
+<span class="w">  </span><span class="n">reward</span><span class="p">(</span><span class="n">saved</span><span class="p">.</span><span class="n">protectors</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+<p><strong>练习21.8：元神话设计</strong>
+设计一个"意识到自己是神话"的元神话故事框架：</p>
+<ul>
+<li>角色发现自己在重复神话模式</li>
+<li>试图打破模式的努力</li>
+<li>最终的解决方案</li>
+</ul>
+<details>
+<summary>提示</summary>
+<p>参考《楚门的世界》《西部世界》等元叙事作品。</p>
+</details>
+<details>
+<summary>参考答案</summary>
+<p>《神话调试者》框架：</p>
+<p><strong>发现阶段</strong></p>
+<ul>
+<li>主角注意到生活中的模式重复</li>
+<li>每7年经历一次"英雄召唤"</li>
+<li>死去的人物会以新身份返回</li>
+<li>关键道具总是出现在需要时</li>
+</ul>
+<p><strong>觉醒过程</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MythicalBeing</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">realize_pattern</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">memories</span><span class="o">.</span><span class="n">analyze</span><span class="p">()</span>
+        <span class="c1"># 发现：我的敌人总是我的阴影</span>
+        <span class="c1"># 发现：我的导师总在关键时刻死去</span>
+        <span class="c1"># 发现：我总是在第三幕获得力量</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">genre</span> <span class="o">==</span> <span class="s2">&quot;Hero&#39;s Journey&quot;</span>
+</code></pre></div>
+
+<p><strong>反抗尝试</strong></p>
+<ol>
+<li>拒绝召唤→世界开始崩坏</li>
+<li>杀死导师→导师重生为敌人</li>
+<li>提前到达终点→时间循环重启</li>
+<li>告诉他人真相→被当作疯子</li>
+</ol>
+<p><strong>元层介入</strong></p>
+<ul>
+<li>遇到"前代主角"（上个循环的英雄）</li>
+<li>发现"作者"层级的存在</li>
+<li>获得"编辑权限"的能力</li>
+</ul>
+<p><strong>解决方案选择</strong></p>
+<p>A. <strong>接受并优化</strong></p>
+<ul>
+<li>既然无法逃脱，就完美扮演</li>
+<li>成为"最优雅的英雄"</li>
+<li>留下线索给下一个循环</li>
+</ul>
+<p>B. <strong>打破第四墙</strong></p>
+<ul>
+<li>直接对读者/观众说话</li>
+<li>请求他们停止阅读/观看</li>
+<li>故事在自我意识中解体</li>
+</ul>
+<p>C. <strong>创造新模式</strong></p>
+<ul>
+<li>不是反抗而是创新</li>
+<li>在神话框架内增加新元素</li>
+<li>让神话进化而非重复</li>
+</ul>
+<p>D. <strong>递归嵌套</strong></p>
+<ul>
+<li>创造自己的神话世界</li>
+<li>在其中成为"作者"</li>
+<li>理解并宽恕自己的"作者"</li>
+</ul>
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">transcendMyth</span><span class="p">(</span><span class="nx">self</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">awareness</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nx">THRESHOLD</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">options</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">accept</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">optimize</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">role</span><span class="p">),</span>
+<span class="w">      </span><span class="k">break</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">addressAudience</span><span class="p">(</span><span class="nx">directly</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">create</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fork</span><span class="p">(</span><span class="nx">newMythBranch</span><span class="p">),</span>
+<span class="w">      </span><span class="nx">recurse</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">MythWorld</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">asAuthor</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">self</span><span class="p">.</span><span class="nx">choice</span><span class="p">(</span><span class="nx">options</span><span class="p">)</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">continuePattern</span><span class="p">(</span><span class="nx">unconsciously</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</details>
+<h2 id="_22">常见陷阱与错误</h2>
+<h3 id="1">1. 生搬硬套古典模式</h3>
+<p><strong>错误</strong>：直接复制神话结构而不考虑现代语境</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 错误：21世纪还在等待神谕</span>
+<span class="n">hero</span><span class="p">.</span><span class="n">waitForProphecy</span><span class="p">()</span><span class="w">  </span><span class="c1">// 现代人不信神谕</span>
+</code></pre></div>
+
+<p><strong>正确</strong>：转换为现代等价物</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">// 正确：算法预测、数据分析</span>
+<span class="n">hero</span><span class="p">.</span><span class="n">analyzeData</span><span class="p">()</span><span class="w">  </span><span class="c1">// 大数据 = 现代神谕</span>
+</code></pre></div>
+
+<h3 id="2">2. 递归无终止条件</h3>
+<p><strong>错误</strong>：英雄永远在升级，没有终点</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="ss">(</span><span class="nv">true</span><span class="ss">)</span><span class="w"> </span>{
+<span class="w">  </span><span class="nv">hero</span>.<span class="nv">levelUp</span><span class="ss">()</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>无限升级，故事无法结束
+}
+</code></pre></div>
+
+<p><strong>正确</strong>：设置清晰的递归终止</p>
+<div class="codehilite"><pre><span></span><code><span class="k">while</span><span class="w"> </span><span class="ss">(</span><span class="nv">hero</span>.<span class="nv">level</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nv">MAX</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="o">!</span><span class="nv">hero</span>.<span class="nv">goalAchieved</span><span class="ss">())</span><span class="w"> </span>{
+<span class="w">  </span><span class="nv">hero</span>.<span class="nv">levelUp</span><span class="ss">()</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="ss">(</span><span class="nv">hero</span>.<span class="nv">hasEpiphany</span><span class="ss">())</span><span class="w"> </span><span class="k">break</span><span class="w">  </span><span class="o">//</span><span class="w"> </span>顿悟<span class="w"> </span><span class="o">=</span><span class="w"> </span>跳出循环
+}
+</code></pre></div>
+
+<h3 id="3">3. 变形没有代价</h3>
+<p><strong>错误</strong>：随意变形，没有任何限制</p>
+<p><strong>正确</strong>：每次变形都应有代价</p>
+<ul>
+<li>能量消耗</li>
+<li>身份认同危机</li>
+<li>不可逆的改变</li>
+<li>社会关系的影响</li>
+</ul>
+<h3 id="4">4. 混合母题失去焦点</h3>
+<p><strong>错误</strong>：试图在一个故事里塞入所有神话母题</p>
+<p><strong>正确</strong>：选择一个主母题，其他作为支撑</p>
+<div class="codehilite"><pre><span></span><code>主线：英雄之旅（70%）
+支线：变形元素（20%）
+背景：创世设定（10%）
+</code></pre></div>
+
+<h3 id="5">5. 忽视文化敏感性</h3>
+<p><strong>错误</strong>：随意挪用神话元素而不理解其文化含义</p>
+<p><strong>正确</strong>：</p>
+<ul>
+<li>研究神话的文化背景</li>
+<li>尊重原始含义</li>
+<li>创新而非挪用</li>
+<li>必要时咨询文化顾问</li>
+</ul>
+<h2 id="_23">最佳实践检查清单</h2>
+<h3 id="_24">结构设计</h3>
+<ul>
+<li>[ ] 明确识别使用的神话模式</li>
+<li>[ ] 设置清晰的递归终止条件</li>
+<li>[ ] 平衡传统结构与现代创新</li>
+<li>[ ] 确保各层递归有明确目的</li>
+</ul>
+<h3 id="_25">现代化改造</h3>
+<ul>
+<li>[ ] 古典元素有现代对应物</li>
+<li>[ ] 保留核心冲突和主题</li>
+<li>[ ] 更新过时的价值观</li>
+<li>[ ] 技术元素合理融入</li>
+</ul>
+<h3 id="_26">文化处理</h3>
+<ul>
+<li>[ ] 尊重原始神话的文化背景</li>
+<li>[ ] 避免文化挪用</li>
+<li>[ ] 多元视角的包容</li>
+<li>[ ] 本地化与普世性的平衡</li>
+</ul>
+<h3 id="_27">创新要素</h3>
+<ul>
+<li>[ ] 不是简单复制而是创造性转化</li>
+<li>[ ] 加入当代特有的冲突</li>
+<li>[ ] 探索新的解决方案</li>
+<li>[ ] 挑战传统模式的假设</li>
+</ul>
+<h3 id="_28">实用性检查</h3>
+<ul>
+<li>[ ] 模式服务于故事，而非相反</li>
+<li>[ ] 读者能够识别但不觉得老套</li>
+<li>[ ] 递归深度适中，不过度复杂</li>
+<li>[ ] 变形/重启机制逻辑自洽</li>
+</ul>
+            </article>
+            
+            <nav class="page-nav"><a href="./chapter20.html" class="nav-link prev">← 第20章：故事审美的不变量与变量——人类叙事偏好的历史演化</a><a href="./chapter22.html" class="nav-link next">第22章：悲剧的异常处理——亚里士多德的净化机制 →</a></nav>
+        </main>
+    </div>
+</body>
+</html>
